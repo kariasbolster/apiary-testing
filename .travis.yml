@@ -1,1 +1,16 @@
-/**/
+language: node_js
+node_js:
+- '7'
+sudo: required
+before_install:
+  - npm install -g protractor
+  - npm install -g newman
+  - npm install -g webdriverio
+before_script:
+   - chmod +x ./deploy.sh
+script: ./deploy.sh
+
+addons:
+  sauce_connect:
+    username: "nedved"
+    access_key: "6d31c524-7dc8-40f3-84da-c92c9ffc1514"
