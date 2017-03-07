@@ -8,8 +8,10 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
-    user: process.env.BROWSER_STACK_USERNAME,
-    key: process.env.BROWSER_STACK_KEY,
+
+    user: 'jkentreynes',
+    key: '84d0d96c-6b36-41e2-a0f3-9da1e6772731',
+    sauceConnect: true,
     
     
     //
