@@ -1,6 +1,6 @@
 'use strict';
 
-describe( 'sample test', function () {
+describe( 'sample test should', function () {
 	beforeAll( function () {
 		browser.url( 'http://www.google.com' );
 	} );
