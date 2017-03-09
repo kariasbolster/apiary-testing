@@ -5,7 +5,7 @@ describe( 'sample test', function () {
 		browser.url( 'http://www.google.com' );
 	} );
 
-	it( 'sample test', function () {
+	it( 'sample test it', function () {
 
 	    var title = browser.getTitle()
 	    console.log(title);
