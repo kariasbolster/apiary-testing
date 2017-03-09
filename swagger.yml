@@ -1,0 +1,77 @@
+swagger: "2.0"
+info:
+  version: "0.0.0"
+  title: Categories API
+  license:
+    name: MIT
+host: www.example.com
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /login:
+    post:
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: ""
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+  /cars:
+    get:
+      responses:
+        200:
+          description: ""
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                color:
+                  type: string
+  /cars/{id}:
+    patch:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          enum:
+            - "42"
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              color:
+                type: string
+      responses:
+        200:
+          description: ""
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              color:
+                type: string

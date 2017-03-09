@@ -9,9 +9,18 @@ exports.config = {
     // values you need to put in here in order to connect to these services.
     //
 
-    user: 'jkentreynes',
-    key: '84d0d96c-6b36-41e2-a0f3-9da1e6772731',
-    sauceConnect: true,
+    // user: 'jkentreynes',
+    // key: '84d0d96c-6b36-41e2-a0f3-9da1e6772731',
+    // sauceConnect: true,
+    
+     // ==================
+    // Selenium Options
+    // ===================
+    // Define selenium host, port and path
+    
+    host: '0.0.0.0',
+    port: 4444,
+    path: '/wd/hub',
     
     
     //

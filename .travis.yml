@@ -1,19 +1,48 @@
-language: 
-  node_js
+language: node_js
 node_js:
-  - '7.5.0'
+- '7'
 env:
   - CXX=g++-4.8
-sudo: 
+sudo:
   required
-install: 
-  - npm install -g webdriverio
-  - npm install -g newman
-  - npm install -g wdio-jasmine-framework
-before_script:
-  - chmod +x ./deploy.sh
-script:
-  ./deploy.sh
+services:
+  - docker
+#TODO caching of node_modules
+before_install:
+  - npm install
+  - npm install -g github-changes
+  - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.0.1-germanium
+  
+install:
+  # Install any dependencies required for building your site here.
+  # `awscli` is required for invalidation of CloudFront distributions and sync file to s# bucket
+  - pip install --user awscli
+  - npm run build
+
+# This is needed to avoid building all the tags pushed by travis
+branches:
+  except:
+    - /^v?\d+\.\d+\.\d+$/
+    - master
+
+branches:
+  only:
+    - develop
+
+#script:
+  # TODO launch unit test
+
+deploy:
+  # Build "images" on develop merge
+  - provider: script
+    script:
+      - ./cicd_scripts/cicd.sh
+    skip_cleanup: true
+    on:
+      branch: develop
+
+#after_deploy:
+ # TODO Launch integration test for uat env
 
 addons:
   apt:
@@ -21,6 +50,3 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-  sauce_connect:
-    username: "jkentreynes"
-    access_key: "84d0d96c-6b36-41e2-a0f3-9da1e6772731"
